@@ -1,35 +1,45 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  const MyApp();
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const String _title = 'Flutter Code Sample';
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.deepOrangeAccent),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('itProger App'),
-          backgroundColor: Colors.deepOrangeAccent,
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Text("Madi is awesome", style: TextStyle(
-            fontSize: 64,
-            color: Colors.black,
-            fontFamily: 'Shizuru',
-          ),)
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () { print("Clicked"); },
-          backgroundColor: Colors.deepOrangeAccent,
-          child: Text('Нажми'),
-        ),
+    return const MaterialApp(
+      title: _title,
+      home: MyStatefulWidget(),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Sample Code"),
+      ),
+      body: Center(child: Text('You have pressed the button $_count times')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() => {_count++}),
+        tooltip: "Increment Counter",
+        child: const Icon(Icons.add),
       ),
     );
   }
-  
 }
